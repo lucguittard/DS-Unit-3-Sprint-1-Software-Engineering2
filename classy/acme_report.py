@@ -8,33 +8,32 @@ NOUNS = ['Anvil', 'Catapult', 'Disguise', 'Mousetrap', '???']
 # function to generate a list of products
 def generate_products(num_products=30):
     products = []
-    price = []
-    weight = []
-    flammability = []
-    total_price = 0
-    total_weight = 0
-    total_flammability = 0
+
     for i in range(num_products):
-        tt = Product(name = '{} {}'.format(sample(ADJECTIVES,1),
+        tt = Product(
+            name = '{} {}'.format(sample(ADJECTIVES,1),
             sample(NOUNS,1)),
             price=randint(5,100),
             weight=randint(5,100),
             flammability=uniform(0,3)
             )
-        products.append(tt.name)
-        #products.append(tt.price)
-        #products.append(tt.weight)
-        #products.append(tt.flammability)
-        total_price += tt.price
-        total_weight += tt.weight
-        total_flammability += tt.flammability
+        products.append(Product(tt.name=name, tt.price=price, tt.weight=weight, tt.flammability=flammability))
 
-    return products, total_price, total_weight, total_flammability
+    return products
 
 # funtion to generate an inventory report
 def inventory_report(products): #,price,weight,flammability):
     unique_products_count = len(products)
 
+    total_price = 0
+    total_weight = 0
+    total_flammability = 0
+
+    for i in range(products):
+        p = Product()
+        total_price += p.price
+        total_weight += p.weight
+        total_flammability += p.flammability
 
     avg_price = total_price/len(products)
     avg_weight = total_weight/len(products)
